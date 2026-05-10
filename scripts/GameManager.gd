@@ -96,3 +96,22 @@ func game_over():
 	move_timer.stop()
 	save_high_score()
 	ui.show_game_over(score)
+
+func _input(event):
+	if is_game_over:
+		return
+	
+	if event is InputEventKey and event.pressed:
+		var new_direction = direction
+		
+		if event.keycode == KEY_UP or event.keycode == KEY_W:
+			new_direction = Vector2i.UP
+		elif event.keycode == KEY_DOWN or event.keycode == KEY_S:
+			new_direction = Vector2i.DOWN
+		elif event.keycode == KEY_LEFT or event.keycode == KEY_A:
+			new_direction = Vector2i.LEFT
+		elif event.keycode == KEY_RIGHT or event.keycode == KEY_D:
+			new_direction = Vector2i.RIGHT
+		
+		if new_direction != direction and new_direction != -direction:
+			direction = new_direction
