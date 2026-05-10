@@ -19,6 +19,8 @@ var is_game_over: bool = false
 func _ready():
 	load_high_score()
 	reset_game()
+	move_timer.timeout.connect(move)
+	move_timer.start()
 
 func reset_game():
 	snake_position = [Vector2i(10, 10)]
@@ -62,3 +64,35 @@ func save_high_score():
 		var save_path = "user://high_score.save"
 		var file = FileAccess.open(save_path, FileAccess.WRITE)
 		file.store_line(JSON.stringify({"high_score": high_score}))
+
+func move():
+	if is_game_over:
+		return
+	
+	var new_head = snake_position[0] + direction
+	
+	if check_collision(new_head):
+		game_over()
+		return
+	
+	snake_position.insert(0, new_head)
+	snake_position.pop_back()
+	
+	update_game()
+
+func check_collision(new_head: Vector2i) -> bool:
+	if new_head.x < 0 or new_head.x >= grid_size.x:
+		return true
+	if new_head.y < 0 or new_head.y >= grid_size.y:
+		return true
+	
+	if new_head in snake_position:
+		return true
+	
+	return false
+
+func game_over():
+	is_game_over = true
+	move_timer.stop()
+	save_high_score()
+	ui.show_game_over(score)
