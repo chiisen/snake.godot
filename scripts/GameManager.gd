@@ -18,7 +18,8 @@ var is_game_over: bool = false
 
 func _ready():
 	load_high_score()
-	call_deferred("reset_game")
+	await get_tree().process_frame
+	reset_game()
 	move_timer.timeout.connect(move)
 	move_timer.start()
 
@@ -33,10 +34,13 @@ func reset_game():
 	update_game()
 
 func update_game():
-	snake.update_visuals(snake_position, cell_size)
-	food.set_grid_position(food_position)
-	ui.update_score(score)
-	ui.update_high_score(high_score)
+	if snake:
+		snake.update_visuals(snake_position, cell_size)
+	if food:
+		food.set_grid_position(food_position)
+	if ui:
+		ui.update_score(score)
+		ui.update_high_score(high_score)
 	move_timer.wait_time = current_speed
 
 func spawn_food():
@@ -107,7 +111,8 @@ func game_over():
 	is_game_over = true
 	move_timer.stop()
 	save_high_score()
-	ui.show_game_over(score)
+	if ui:
+		ui.show_game_over(score)
 
 func _input(event):
 	if is_game_over:

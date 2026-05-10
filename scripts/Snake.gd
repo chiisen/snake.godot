@@ -34,7 +34,7 @@ func create_circle_texture(size: float, color: Color) -> ImageTexture:
 	return tex
 
 func update_visuals(positions: Array, size: int):
-	if positions.size() > 0:
+	if positions.size() > 0 and head_sprite:
 		head_sprite.position = Vector2(
 			positions[0].x * size + size / 2.0,
 			positions[0].y * size + size / 2.0
