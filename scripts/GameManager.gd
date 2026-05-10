@@ -75,10 +75,21 @@ func move():
 		game_over()
 		return
 	
-	snake_position.insert(0, new_head)
-	snake_position.pop_back()
+	if new_head == food_position:
+		snake_position.insert(0, new_head)
+		score += 1
+		spawn_food()
+		update_speed()
+	else:
+		snake_position.insert(0, new_head)
+		snake_position.pop_back()
 	
 	update_game()
+
+func update_speed():
+	current_speed = base_speed - (score * 0.005)
+	current_speed = max(current_speed, 0.05)
+	move_timer.wait_time = current_speed
 
 func check_collision(new_head: Vector2i) -> bool:
 	if new_head.x < 0 or new_head.x >= grid_size.x:
