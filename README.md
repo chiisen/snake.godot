@@ -12,7 +12,7 @@ C:\Users\【你的使用者名稱】\.opencode\opencode.json
 "godot": {
     "type": "local",
     "command": ["npx", "-y", "@coding-solo/godot-mcp"],
-    "environment": {
+    "env": {
         "GODOT_PATH": "D:\\Godot\\4.2.2\\Godot_v4.2.2-stable_win64.exe"
     },
     "enabled": true
