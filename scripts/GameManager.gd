@@ -97,8 +97,9 @@ func check_collision(new_head: Vector2i) -> bool:
 	if new_head.y < 0 or new_head.y >= grid_size.y:
 		return true
 	
-	if new_head in snake_position:
-		return true
+	for i in range(snake_position.size() - 1):
+		if new_head == snake_position[i]:
+			return true
 	
 	return false
 
