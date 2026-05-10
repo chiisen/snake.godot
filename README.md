@@ -1,6 +1,8 @@
 # snake.godot
 貪吃蛇 Godot 版
 
+![遊戲截圖](./images/game01.png)
+
 ## 安裝 MCP server
 ```bash
 npm install -g @coding-solo/godot-mcp
