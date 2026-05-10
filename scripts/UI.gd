@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var restart_button = $GameOverPanel/RestartButton
 
 func _ready():
+	game_over_panel.modulate = Color(0, 0, 0, 0.5)
 	restart_button.pressed.connect(_on_restart_pressed)
 
 func update_score(score: int):
