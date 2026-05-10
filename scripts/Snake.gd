@@ -7,10 +7,18 @@ var cell_size: int = 32
 func _ready():
 	head_sprite = $Head
 	head_sprite.texture = create_circle_texture(cell_size * 0.8, Color(0.2, 0.6, 0.2))
+	
+	var left_eye = $Head/Eyes/LeftEye
+	var right_eye = $Head/Eyes/RightEye
+	left_eye.texture = create_circle_texture(cell_size * 0.15, Color(1, 1, 1))
+	right_eye.texture = create_circle_texture(cell_size * 0.15, Color(1, 1, 1))
+	left_eye.offset = Vector2(-5, -5) + Vector2(cell_size * 0.15 / 2, cell_size * 0.15 / 2)
+	right_eye.offset = Vector2(5, -5) + Vector2(cell_size * 0.15 / 2, cell_size * 0.15 / 2)
+	
 	body_sprites = []
 
 func create_circle_texture(size: float, color: Color) -> ImageTexture:
-	var img = Image.create_empty(int(size), int(size), false, Image.FORMAT_RGBA8)
+	var img = Image.create(int(size), int(size), false, Image.FORMAT_RGBA8)
 	img.fill(Color(0, 0, 0, 0))
 	
 	var center = Vector2(size / 2, size / 2)
