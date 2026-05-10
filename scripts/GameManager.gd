@@ -18,7 +18,7 @@ var is_game_over: bool = false
 
 func _ready():
 	load_high_score()
-	reset_game()
+	call_deferred("reset_game")
 	move_timer.timeout.connect(move)
 	move_timer.start()
 
