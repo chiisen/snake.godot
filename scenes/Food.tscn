@@ -4,4 +4,4 @@
 
 [node name="Food" type="Sprite2D"]
 script = ExtResource( 1 )
-modulate = Color(1, 0.3, 0.3)
+modulate = Color(1, 0.3, 0.3, 1)
