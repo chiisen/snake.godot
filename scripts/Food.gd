@@ -19,8 +19,8 @@ func create_circle_texture(size: float, color: Color) -> ImageTexture:
 			if dist <= radius:
 				img.set_pixel(x, y, color)
 	
-	var texture = ImageTexture.create_from_image(img)
-	return texture
+	var tex = ImageTexture.create_from_image(img)
+	return tex
 
 func set_grid_position(grid_pos: Vector2i):
 	base_position = Vector2(grid_pos.x * cell_size, grid_pos.y * cell_size)

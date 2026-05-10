@@ -11,9 +11,9 @@ var base_speed: float = 0.2
 var current_speed: float = 0.2
 var is_game_over: bool = false
 
-@onready var snake = $"../Snake"
-@onready var food = $"../Food"
-@onready var ui = $"../UI"
+@onready var snake = get_parent().get_node("Snake")
+@onready var food = get_parent().get_node("Food")
+@onready var ui = get_parent().get_node("UI")
 @onready var move_timer = $MoveTimer
 
 func _ready():

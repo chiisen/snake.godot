@@ -29,25 +29,25 @@ func create_circle_texture(size: float, color: Color) -> ImageTexture:
 			if dist <= radius:
 				img.set_pixel(x, y, color)
 	
-	var texture = ImageTexture.create_from_image(img)
-	return texture
+	var tex = ImageTexture.create_from_image(img)
+	return tex
 
-func update_visuals(positions: Array, cell_size: int):
+func update_visuals(positions: Array, size: int):
 	if positions.size() > 0:
 		head_sprite.position = Vector2(
-			positions[0].x * cell_size + cell_size / 2,
-			positions[0].y * cell_size + cell_size / 2
+			positions[0].x * size + size / 2,
+			positions[0].y * size + size / 2
 		)
 	
 	for i in range(1, positions.size()):
 		if i - 1 >= body_sprites.size():
 			var body_sprite = Sprite2D.new()
-			body_sprite.texture = create_circle_texture(cell_size * 0.7, Color(0.3, 0.7, 0.3))
-			body_sprite.offset = Vector2(cell_size / 2, cell_size / 2)
+			body_sprite.texture = create_circle_texture(size * 0.7, Color(0.3, 0.7, 0.3))
+			body_sprite.offset = Vector2(size / 2, size / 2)
 			$Body.add_child(body_sprite)
 			body_sprites.append(body_sprite)
 		
 		body_sprites[i - 1].position = Vector2(
-			positions[i].x * cell_size,
-			positions[i].y * cell_size
+			positions[i].x * size,
+			positions[i].y * size
 		)
